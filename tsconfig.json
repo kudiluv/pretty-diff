@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "ES2019",
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "declaration": true,
+    "strict": true,
+    "outDir": "lib",
+    "skipLibCheck": true
+  },
+  "exclude": [
+    "**/__tests__"
+  ],
+}
