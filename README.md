@@ -2,7 +2,13 @@
 
 Library for creating a nice difference log
 
-## SingleResolver
+-   [Single Resolver](#single-resolver)
+-   [Array Resolver](#array-resolver)
+-   [Resolver Wrapper](#resolver-wrapper)
+-   [Nested Resolver](#nested-resolver)
+-   [Context](#context)
+
+## Single Resolver
 
 Utility to check if the value has changed
 
@@ -28,7 +34,7 @@ The resolver returns the changed value or null
 }
 ```
 
-## ArrayResolver
+## Array Resolver
 
 Utility for comparing arrays
 
@@ -93,7 +99,7 @@ Resolver returns the value of the array change or null
 }
 ```
 
-## ResolverWrapper
+## Resolver Wrapper
 
 Utility for comparing objects with many resolvers
 
@@ -153,7 +159,7 @@ The return value is an array of changes
 ]
 ```
 
-## NestedResolver
+## Nested Resolver
 
 Utility for adding nested changes
 
@@ -193,7 +199,7 @@ Returns the nested structure of the changes
 }
 ```
 
-## CONTEXT
+## Context
 
 Utility for change the context of your resolvers
 
