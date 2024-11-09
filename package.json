@@ -12,7 +12,7 @@
         "test": "jest",
         "test-coverage": "jest --coverage",
         "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
-        "prepare": "run-s lint compile test"
+        "prepublishOnly": "run-s lint compile test"
     },
     "author": "kudiluv",
     "license": "ISC",
