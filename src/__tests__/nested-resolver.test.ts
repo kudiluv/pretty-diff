@@ -6,8 +6,8 @@ describe('NestedResolver', () => {
         const current = 'current';
 
         const result = await NestedResolver<string>('test', [
-            SingleResolver('first-resolve', (value) => value),
-            SingleResolver('second-resolve', (value) => value),
+            SingleResolver({ name: 'first-resolve' }),
+            SingleResolver({ name: 'second-resolve' }),
         ])(prev, current);
 
         expect(result).toEqual({
@@ -33,8 +33,8 @@ describe('NestedResolver', () => {
         const prev = { a: 1, b: 'test' };
         const current = { a: 1, b: 'test' };
         const result = await NestedResolver<typeof prev>('test', [
-            SingleResolver('first-resolve', (value) => value),
-            SingleResolver('second-resolve', (value) => value),
+            SingleResolver({ name: 'first-resolve' }),
+            SingleResolver({ name: 'second-resolve' }),
         ])(prev, current);
 
         expect(result).toBeNull();

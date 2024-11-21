@@ -4,19 +4,29 @@ import { Change, Resolver } from '../types';
 /**
  * Util for deep compare two objects
  */
-export function SingleResolver<T>(name: string, compareBy: (value?: T) => Promise<unknown> | unknown): Resolver<T> {
+export function SingleResolver<T>({
+    name,
+    compareBy,
+    transformForView,
+}: {
+    name: string | ((value?: T) => Promise<string> | string);
+    compareBy?: (value?: T) => Promise<unknown> | unknown;
+    transformForView?: (value?: T) => Promise<unknown> | unknown;
+}): Resolver<T> {
     return async (prev?: T, current?: T): Promise<Change | null> => {
-        const prevValue = await compareBy(prev);
-        const currentValue = await compareBy(current);
+        const prevValue = compareBy ? await compareBy(prev) : prev;
+        const currentValue = compareBy ? await compareBy(current) : current;
 
         if (isEqual(prevValue, currentValue)) {
             return null;
         }
 
         return {
-            name,
+            name: typeof name === 'string' ? name : await name(current),
             old: prevValue,
             new: currentValue,
+            oldForView: transformForView ? await transformForView(prev) : undefined,
+            newForView: transformForView ? await transformForView(current) : undefined,
             subChanges: [],
         };
     };

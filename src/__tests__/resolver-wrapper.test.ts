@@ -7,8 +7,8 @@ describe('WrapperResolver', () => {
         const prev = { test1: 'prev', test2: 'prev' };
         const current = { test1: 'prev', test2: 'prev' };
         const resolver = ResolverWrapper<typeof prev>([
-            SingleResolver('test1', (value) => value?.test1),
-            SingleResolver('test2', (value) => value?.test2),
+            SingleResolver({ name: 'test1', compareBy: (value) => value?.test1 }),
+            SingleResolver({ name: 'test2', compareBy: (value) => value?.test2 }),
         ]);
 
         expect(await resolver(prev, current)).toEqual([]);
@@ -17,8 +17,8 @@ describe('WrapperResolver', () => {
         const prev = { test1: 'prev', test2: 'prev2' };
         const current = { test1: 'prev', test2: 'prev' };
         const resolver = ResolverWrapper<typeof prev>([
-            SingleResolver('test1', (value) => value?.test1),
-            SingleResolver('test2', (value) => value?.test2),
+            SingleResolver({ name: 'test1', compareBy: (value) => value?.test1 }),
+            SingleResolver({ name: 'test2', compareBy: (value) => value?.test2 }),
         ]);
 
         expect(await resolver(prev, current)).toEqual([

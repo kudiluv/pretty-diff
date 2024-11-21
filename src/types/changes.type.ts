@@ -2,6 +2,8 @@ export type Change = {
     name: string;
     old?: unknown;
     new?: unknown;
+    oldForView?: unknown;
+    newForView?: unknown;
     subChanges: Change[] | ArrayChange[];
 };
 

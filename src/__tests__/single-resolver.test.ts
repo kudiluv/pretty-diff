@@ -5,14 +5,14 @@ describe('SingleResolver', () => {
     it('should return NULL for equal string values', async () => {
         const prev = 'prev';
         const current = 'prev';
-        const resolver = SingleResolver<string>('test-string', (value) => value);
+        const resolver = SingleResolver<string>({ name: 'test-string' });
 
         expect(await resolver(prev, current)).toBeNull();
     });
     it('should return Change for not equal string values', async () => {
         const prev = 'prev';
         const current = 'current';
-        const resolver = SingleResolver<string>('test-string', (value) => value);
+        const resolver = SingleResolver<string>({ name: 'test-string' });
 
         expect(await resolver(prev, current)).toEqual({
             name: 'test-string',
@@ -24,14 +24,14 @@ describe('SingleResolver', () => {
     it('should return NULL for equal boolean values', async () => {
         const prev = true;
         const current = true;
-        const resolver = SingleResolver<boolean>('test-boolean', (value) => value);
+        const resolver = SingleResolver<boolean>({ name: 'test-boolean' });
 
         expect(await resolver(prev, current)).toBeNull();
     });
     it('should return Change for not equal string values', async () => {
         const prev = false;
         const current = true;
-        const resolver = SingleResolver<boolean>('test-boolean', (value) => value);
+        const resolver = SingleResolver<boolean>({ name: 'test-boolean' });
 
         expect(await resolver(prev, current)).toEqual({
             name: 'test-boolean',
@@ -43,14 +43,14 @@ describe('SingleResolver', () => {
     it('should return NULL for equal number values', async () => {
         const prev = 1;
         const current = 1;
-        const resolver = SingleResolver<number>('test-number', (value) => value);
+        const resolver = SingleResolver<number>({ name: 'test-number' });
 
         expect(await resolver(prev, current)).toBeNull();
     });
     it('should return Change for not equal number values', async () => {
         const prev = 1;
         const current = 2;
-        const resolver = SingleResolver<number>('test-number', (value) => value);
+        const resolver = SingleResolver<number>({ name: 'test-number' });
 
         expect(await resolver(prev, current)).toEqual({
             name: 'test-number',
@@ -62,14 +62,14 @@ describe('SingleResolver', () => {
     it('should return NULL for equal Date values', async () => {
         const prev = new Date('2020-01-01');
         const current = new Date('2020-01-01');
-        const resolver = SingleResolver<Date>('test-date', (value) => value);
+        const resolver = SingleResolver<Date>({ name: 'test-date' });
 
         expect(await resolver(prev, current)).toBeNull();
     });
     it('should return Change for not equal Date values', async () => {
         const prev = new Date('2020-01-01');
         const current = new Date('2020-01-02');
-        const resolver = SingleResolver<Date>('test-date', (value) => value);
+        const resolver = SingleResolver<Date>({ name: 'test-date' });
 
         expect(await resolver(prev, current)).toEqual({
             name: 'test-date',
@@ -81,14 +81,14 @@ describe('SingleResolver', () => {
     it('should return NULL for equal objects', async () => {
         const prev = { a: 1, b: 'test', c: new Date('2020-01-01') };
         const current = { a: 1, b: 'test', c: new Date('2020-01-01') };
-        const resolver = SingleResolver<typeof prev>('test-object', (value) => value);
+        const resolver = SingleResolver<typeof prev>({ name: 'test-object' });
 
         expect(await resolver(prev, current)).toBeNull();
     });
     it('should return Change for not equal objects', async () => {
         const prev = { a: 1, b: 'test', c: new Date('2020-01-01') };
         const current = { a: 1, b: 'test', c: new Date('2020-01-02') };
-        const resolver = SingleResolver<typeof prev>('test-object', (value) => value);
+        const resolver = SingleResolver<typeof prev>({ name: 'test-object' });
 
         expect(await resolver(prev, current)).toEqual({
             name: 'test-object',
@@ -100,14 +100,14 @@ describe('SingleResolver', () => {
     it('should return NULL for equal deep objects', async () => {
         const prev = { a: 1, b: { c: 'test' } };
         const current = { a: 1, b: { c: 'test' } };
-        const resolver = SingleResolver<typeof prev>('test-deep-object', (value) => value);
+        const resolver = SingleResolver<typeof prev>({ name: 'test-deep-object' });
 
         expect(await resolver(prev, current)).toBeNull();
     });
     it('should return Change for not equal deep objects', async () => {
         const prev = { a: 1, b: { c: 'test' } };
         const current = { a: 1, b: { c: 'test2' } };
-        const resolver = SingleResolver<typeof prev>('test-deep-object', (value) => value);
+        const resolver = SingleResolver<typeof prev>({ name: 'test-deep-object' });
 
         expect(await resolver(prev, current)).toEqual({
             name: 'test-deep-object',
@@ -119,14 +119,14 @@ describe('SingleResolver', () => {
     it('should return NULL for equal arrays', async () => {
         const prev = [1, 'test', new Date('2020-01-01')];
         const current = [1, 'test', new Date('2020-01-01')];
-        const resolver = SingleResolver<typeof prev>('test-array', (value) => value);
+        const resolver = SingleResolver<typeof prev>({ name: 'test-array' });
 
         expect(await resolver(prev, current)).toBeNull();
     });
     it('should return Change for not equal arrays', async () => {
         const prev = [1, 'test', new Date('2020-01-01')];
         const current = [1, 'test', new Date('2020-01-02')];
-        const resolver = SingleResolver<typeof prev>('test-array', (value) => value);
+        const resolver = SingleResolver<typeof prev>({ name: 'test-array' });
 
         expect(await resolver(prev, current)).toEqual({
             name: 'test-array',

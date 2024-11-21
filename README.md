@@ -14,11 +14,17 @@ Utility to check if the value has changed
 
 ### Attributes
 
--   change name (required);
--   async property resolver (required);
+-   options (required);
+    -- name (required);
+    -- compareBy (optional);
+    -- transformForView (optional);
 
 ```typescript
-SingleResolver<Date>('date-change', async (value) => value)(prev, current);
+SingleResolver({
+    name: 'Birthdate',
+    compareBy: (doc) => new Date(doc?.birthDate).toISOString(),
+    transformForView: (doc) => dayjs(doc?.birthDate).format('DD-MM-YYYY'),
+});
 ```
 
 ### Return value
@@ -27,9 +33,11 @@ The resolver returns the changed value or null
 
 ```json
 {
-    "name": "date-change",
-    "old": "2024-11-04T21:26:36.649Z",
-    "new": "2024-11-04T21:26:59.403Z",
+    "name": "Birthdate",
+    "old": "2002-12-18T21:00:00.000Z",
+    "new": "2024-11-04T21:00:00.000Z",
+    "oldForView": "19-12-2002",
+    "newForView": "05-11-2024",
     "subChanges": []
 }
 ```

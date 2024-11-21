@@ -1,6 +1,6 @@
 {
     "name": "alter-atlas",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "description": "library for creating a nice difference log",
     "main": "lib/index.js",
     "types": "lib/index.d.ts",

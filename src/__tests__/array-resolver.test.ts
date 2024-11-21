@@ -11,7 +11,7 @@ describe('ArrayResolver', () => {
             (value) => value ?? [],
             (value) => value,
             (value) => value?.toString() ?? 'unknown',
-            [SingleResolver('test', (value) => value)],
+            [SingleResolver({ name: 'test' })],
         );
 
         expect(await resolver(prev, current)).toBeNull();
@@ -33,7 +33,7 @@ describe('ArrayResolver', () => {
             (value) => value ?? [],
             (value) => value.id,
             (value) => value?.label ?? 'unknown label',
-            [SingleResolver('value', (context) => context?.item?.value)],
+            [SingleResolver({ name: 'value', compareBy: (context) => context?.item?.value })],
         );
 
         expect(await resolver(prev, current)).toEqual({
